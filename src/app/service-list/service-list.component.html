@@ -1,0 +1,41 @@
+
+<h1> STATUS PAGE APP</h1>
+
+
+  <table class="container ">
+    <thead>
+        <tr class="row">
+          <th class="col-3">Service</th>
+          <th class="col-3">Status</th>
+          <th class="col-3">Edited Service Name</th>
+          <th class="col-3">Edited Service Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <br>
+        <tr class="row" *ngFor="let service of listofservices ">
+            <td scope="row" class="col-3">{{ service.serviceName }}</td>
+            <td class="col-3">{{service?.serviceStatus}}</td>
+            <td class="col-3">
+                <input type="text"
+                placeholder="Type edited service name"
+                name = "updatedservicename" id = "updatedservicename" minlength="1">
+            </td>
+            <td class="col-3">
+                <input type="text"
+                placeholder="Type edited service status"
+                name = "updatedservicestatus" id = "updatedservicestatus" minlength="1">
+            </td>
+            <td class="col-3">
+                <!-- <div *ngIf="updatedtask.errors?.['minlength']" class="alert-danger">Minlength</div> -->
+                <button (click)="UpdateService(service.serviceId)">Edit</button>
+            </td>
+            <td class="col-3"><button (click)="DeleteService(service.serviceId)">Delete</button></td>
+        </tr>
+    </tbody>
+  </table>
+  <br><br>
+  <button (click)="navigatetonewService()">Add New Service</button>
+  <br><br>
+  <button (click)="navigatetonewincident()">Add New Incident</button>
+

@@ -12,14 +12,14 @@ export class NewTaskComponent {
   newtask: string="";
   constructor(private router: Router, private datasharingService: DatasharinghttpService){}
 
-  addtaskandnavtotasklist(){
-    this.datasharingService.refreshTweetsfalse();
-    this.datasharingService.postNewTask(this.newtask).subscribe((response)=>{  
-      this.datasharingService.refreshTweetstrue();
-      this.router.navigate(['']);
-    },
-    (error: any)=>{
-      console.log(error);
-    });
-  }
+  // addtaskandnavtotasklist(){
+  //   this.datasharingService.refreshServicefalse();
+  //   this.datasharingService.postNewTask(this.newtask).subscribe((response)=>{  
+  //     this.datasharingService.refreshServicetrue();
+  //     this.router.navigate(['']);
+  //   },
+  //   (error: any)=>{
+  //     console.log(error);
+  //   });
+  // }
 }

@@ -1,0 +1,20 @@
+<h1> STATUS PAGE APP</h1>
+<form>
+    <div class="form-group">
+        <label for="description">Incident Description  : </label>
+        <input type="text" 
+        [(ngModel)]="newIncidentDescrip" id="description"
+        name="task" class="form-control"
+        placeholder="Type Incident Description"> 
+        <br><br>
+        <label for="Status">Incident Status : </label>
+        <input type="text" 
+        [(ngModel)]="newIncidentStatus"  id="Status"
+        name="task" class="form-control"
+        placeholder="Type Incident Status"> 
+    </div>
+</form>
+<br>
+<button (click)="addincident()">Add New Incident</button>
+<br><br>
+<button (click)="navtoservicelist()">Back to list of Services</button>
