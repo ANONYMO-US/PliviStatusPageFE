@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NewTaskComponent } from './new-task/new-task.component';
 import { ServiceListComponent } from './service-list/service-list.component';
 import { NewServiceComponent } from './new-service/new-service.component';
 import { NewIncidentComponent } from './new-incident/new-incident.component';
