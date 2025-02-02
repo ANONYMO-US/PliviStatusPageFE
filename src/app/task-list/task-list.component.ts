@@ -61,7 +61,7 @@ export class TaskListComponent implements OnInit {
     this.enableEdit=true;
   }
 
-  navigatetonewtask(){
+  navigatetonewtask( ){
     this.router.navigate(['/addnewservice']);
   }
 }
