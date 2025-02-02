@@ -57,4 +57,8 @@ export class DatasharinghttpService {
   putIncident(updatedincident : Incidents){
     return this.http.put(APIUrls.BASE_URL+APIUrls.UPDATE_INCIDENT, updatedincident);
   }
+
+  associateIncidentwithService(incidentId : number,serviceId : number){
+    return this.http.put(APIUrls.BASE_URL+APIUrls.ASSOCIATE_INCIDENT_WITH_SERVICE+`${incidentId}`, serviceId);
+  }
 }

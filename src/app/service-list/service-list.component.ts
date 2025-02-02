@@ -46,12 +46,12 @@ export class ServiceListComponent {
     
   }
 
-  UpdateService(serviceid: number){
+  UpdateService(service: any){
 
-    this.updatedservicename= (<HTMLInputElement>document.getElementById('updatedservicename')).value;
-    this.updatedservicestatus= (<HTMLInputElement>document.getElementById('updatedservicestatus')).value;
+    // this.updatedservicename= (<HTMLInputElement>document.getElementById('updatedservicename')).value;
+    // this.updatedservicestatus= (<HTMLInputElement>document.getElementById('updatedservicestatus')).value;
     this.enableEdit=false;
-    var updatedservice = new CompanyService(serviceid,this.updatedservicename,this.updatedservicestatus,0);
+    var updatedservice = new CompanyService(service.serviceId,service.userServiceName,service.userServiceStatus,0);
     this.datasharingService.putService(updatedservice).subscribe((response)=>{
       this.fetchservicelist();
     },

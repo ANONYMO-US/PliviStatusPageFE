@@ -5,32 +5,42 @@
   <table class="container ">
     <thead>
         <tr class="row">
-          <th class="col-3">Incident</th>
-          <th class="col-3">Status</th>
-          <th class="col-3">Edited Incident Description</th>
-          <th class="col-3">Edited Incident Status</th>
+          <th class="col-5">[ Incident Description ]</th>
+          <th class="col-5">[ Incident  Status ]</th>
+          <th class="col-5">[ Current Association with Service ]</th>
+          <th class="col-3">[ Edited Incident Description ]</th>
+          <th class="col-3">[ Edited Incident Status ]</th>
         </tr>
     </thead>
     <tbody>
         <br>
         <tr class="row" *ngFor="let incident of listofincidents ">
-            <td scope="row" class="col-3">{{ incident.incidentDescription }}</td>
-            <td class="col-3">{{incident?.incidentStatus}}</td>
-            <td class="col-3">
+            <td scope="row" class="col-5" style="text-align: center;">{{ incident.incidentDescription }}</td>
+            <td class="col-5" style="text-align: center;">{{incident?.incidentStatus}}</td>
+            <td class="col-5" style="text-align: center;">{{incident?.serviceName}}</td>
+            <td class="col-3" style="text-align: center;">
                 <input type="text"
-                placeholder="Type edited incident Description"
-                name = "updatedincidentname" id = "updatedincidentdesc" minlength="1">
+                placeholder="Type edited incident Description" [(ngModel)]="incident.userDesc"
+                name = "updatedincidentdesc" id = "updatedincidentdesc" minlength="1">
             </td>
-            <td class="col-3">
+            <td class="col-3" style="text-align: center;">
                 <input type="text"
-                placeholder="Type edited incident Status"
+                placeholder="Type edited incident Status" [(ngModel)]="incident.userStatus"
                 name = "updatedincidentstatus" id = "updatedincidentstatus" minlength="1">
             </td>
             <td class="col-3">
                 <!-- <div *ngIf="updatedtask.errors?.['minlength']" class="alert-danger">Minlength</div> -->
-                <button (click)="Updateincident(incident.incidentId)">Edit</button>
+                <button (click)="Updateincident(incident)">Edit</button>
             </td>
+            
             <td class="col-3"><button (click)="Deleteincident(incident.incidentId)">Mark as Resolved</button></td>
+            <td class="col-6">
+                <label for="dynamicDropdown">Choose a Service:</label>
+                <select id="dynamicDropdown" [(ngModel)]="incident.selectedOptionId">
+                <option *ngFor="let option of listofservices" [value]="option.serviceId">{{ option.serviceName }}</option>
+                </select>
+                <button (click)="AssociateincidentwithService(incident)">Associate with service</button>
+            </td>
         </tr>
     </tbody>
   </table>

@@ -8,5 +8,6 @@ export class APIUrls {
     public static POST_NEW_INCIDENT = "api/createincident"
     public static RESOLVE_INCIDENT = "api/resolveincident/"
     public static UPDATE_INCIDENT = "api/updateincident/"
+    public static ASSOCIATE_INCIDENT_WITH_SERVICE = "api/associateincidentwithservice/"
 
 }

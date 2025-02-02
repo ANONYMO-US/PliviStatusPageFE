@@ -18,17 +18,17 @@
             <td class="col-3">{{service?.serviceStatus}}</td>
             <td class="col-3">
                 <input type="text"
-                placeholder="Type edited service name"
+                placeholder="Type edited service name"  [(ngModel)]="service.userServiceName"
                 name = "updatedservicename" id = "updatedservicename" minlength="1">
             </td>
             <td class="col-3">
                 <input type="text"
-                placeholder="Type edited service status"
+                placeholder="Type edited service status"  [(ngModel)]="service.userServiceStatus"
                 name = "updatedservicestatus" id = "updatedservicestatus" minlength="1">
             </td>
             <td class="col-3">
                 <!-- <div *ngIf="updatedtask.errors?.['minlength']" class="alert-danger">Minlength</div> -->
-                <button (click)="UpdateService(service.serviceId)">Edit</button>
+                <button (click)="UpdateService(service)">Edit</button>
             </td>
             <td class="col-3"><button (click)="DeleteService(service.serviceId)">Delete</button></td>
         </tr>

@@ -13,6 +13,8 @@ import { Incidents } from '../common/_models/Incidents';
 export class IncidentListComponent {
 
   listofincidents: any=[{title: "Default1"},{title: "Default2"}];
+  listofservices : any;
+  selectedOptionId : number = 0 // Stores the selected value
   id : number=0;
   enableEdit : boolean=false;
   updatedincidentdesc: string ="";
@@ -25,12 +27,25 @@ export class IncidentListComponent {
       if(flag == true)this.fetchincidentlist();
     });
     this.fetchincidentlist();
+    this.fetchservicelist();
   }
 
   fetchincidentlist(){
     // call service to fetch list of Services and update list on html
     this.datasharingService?.getListofIncidents().pipe(take(1)).subscribe((response: any) => {
       this.listofincidents = response;
+      this.fetchservicelist();
+    },
+      (error: any)=>{
+        console.log(error);
+      })
+  }
+
+  fetchservicelist(){
+    // call service to fetch list of Services and update list on html
+    this.datasharingService?.getListofServices().pipe(take(1)).subscribe((response: any) => {
+      this.listofservices = response;
+      this.bindServiceNamewithIncident();
     },
       (error: any)=>{
         console.log(error);
@@ -47,13 +62,25 @@ export class IncidentListComponent {
     
   }
 
-  Updateincident(incidentId: number){
+  Updateincident(incident: any){
 
     this.updatedincidentdesc= (<HTMLInputElement>document.getElementById('updatedincidentdesc')).value;
     this.updatedincidentstatus= (<HTMLInputElement>document.getElementById('updatedincidentstatus')).value;
     this.enableEdit=false;
-    var updatedincident = new Incidents(0,incidentId,this.updatedincidentstatus,this.updatedincidentdesc);
+    var updatedincident = new Incidents(incident.serviceId,incident.incidentId,incident.userStatus,incident.userDesc);
     this.datasharingService.putIncident(updatedincident).subscribe((response)=>{
+      this.fetchincidentlist();
+    },
+    (error: any)=>{
+      console.log(error);
+    });
+
+  }
+
+  AssociateincidentwithService(incident: any){
+    this.enableEdit=false;
+    this.selectedOptionId
+    this.datasharingService.associateIncidentwithService(incident.incidentId,Number(incident.selectedOptionId)).subscribe((response)=>{
       this.fetchincidentlist();
     },
     (error: any)=>{
@@ -68,5 +95,22 @@ export class IncidentListComponent {
 
   navigatetoServicelist( ){
     this.router.navigate(['']);
+  }
+
+  bindServiceNamewithIncident()
+  {
+    for (var incident of this.listofincidents) {
+      var isnamefound = false;
+      for (var service of this.listofservices) {
+        if(incident.serviceId == service.serviceId)
+        {
+          incident.serviceName = service.serviceName;
+          isnamefound = true;
+          break;
+        }
+      }
+      if(!isnamefound)
+      { incident.serviceName = "None"; }
+  }
   }
 }
