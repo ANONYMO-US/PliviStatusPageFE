@@ -11,6 +11,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ServiceListComponent } from './service-list/service-list.component';
 import { NewServiceComponent } from './new-service/new-service.component';
 import { NewIncidentComponent } from './new-incident/new-incident.component';
+import { IncidentListComponent } from './incident-list/incident-list.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { NewIncidentComponent } from './new-incident/new-incident.component';
     NewTaskComponent,
     ServiceListComponent,
     NewServiceComponent,
-    NewIncidentComponent
+    NewIncidentComponent,
+    IncidentListComponent
   ],
   imports: [
     BrowserModule,

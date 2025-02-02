@@ -1,0 +1,41 @@
+
+<h1> STATUS PAGE APP</h1>
+
+
+  <table class="container ">
+    <thead>
+        <tr class="row">
+          <th class="col-3">Incident</th>
+          <th class="col-3">Status</th>
+          <th class="col-3">Edited Incident Description</th>
+          <th class="col-3">Edited Incident Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <br>
+        <tr class="row" *ngFor="let incident of listofincidents ">
+            <td scope="row" class="col-3">{{ incident.incidentDescription }}</td>
+            <td class="col-3">{{incident?.incidentStatus}}</td>
+            <td class="col-3">
+                <input type="text"
+                placeholder="Type edited incident Description"
+                name = "updatedincidentname" id = "updatedincidentdesc" minlength="1">
+            </td>
+            <td class="col-3">
+                <input type="text"
+                placeholder="Type edited incident Status"
+                name = "updatedincidentstatus" id = "updatedincidentstatus" minlength="1">
+            </td>
+            <td class="col-3">
+                <!-- <div *ngIf="updatedtask.errors?.['minlength']" class="alert-danger">Minlength</div> -->
+                <button (click)="Updateincident(incident.incidentId)">Edit</button>
+            </td>
+            <td class="col-3"><button (click)="Deleteincident(incident.incidentId)">Mark as Resolved</button></td>
+        </tr>
+    </tbody>
+  </table>
+  <br><br>
+  <button (click)="navigatetoServicelist()">Back to Service List</button>
+
+
+

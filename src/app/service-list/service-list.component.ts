@@ -73,4 +73,8 @@ export class ServiceListComponent {
     this.router.navigate(['/addnewincident']);
   }
 
+  navigatetoincidentlist( ){
+    this.router.navigate(['/incidentlist']);
+  }
+
 }
